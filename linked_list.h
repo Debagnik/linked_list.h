@@ -1,30 +1,37 @@
-// Linked_list.h file
+// Linked_list.h source file
 
-//#ifndef _linked_list_h
+#ifndef linked_list_h
 #include<stdio.h>
 #include<stdlib.h>
 #define _linked_list_h
+#endif
 
-//Created by Debagnik Kar on aug 20th 2019
 
-struct node {
+//Created by Debagnik Kar on 20/08/2019(ddmmyyyy)
+//last edited on 07/09/2019 (ddmmyyyy)
+
+struct node   //structure allocation
+{
    int data;
    struct node *next;
 };
 
+typedef struct node node;
+
 int count;
-struct node *start=NULL;
+
+node *start=NULL;
 
 void insertBegin(int n);
 void insertEnd(int n);
 void display();
-void deleteList(int );
+void deleteList(int position);
 
 void insertBegin(int x)
 {
-	struct node *t;
+	node *t;
    
-	t = (struct node*)malloc(sizeof(struct node));
+	t = (node*)malloc(sizeof(node));
    	count++;
      
    	if (start == NULL) {
@@ -39,13 +46,15 @@ void insertBegin(int x)
    start = t;
 }
  
-void insertEnd(int x) {
+void insertEnd(int x)
+{
    struct node *t, *temp;
    
    t = (struct node*)malloc(sizeof(struct node));
    count++;
    
-   if (start == NULL) {
+   if (start == NULL)
+   {
       start = t;
       start->data = x;
       start->next = NULL;
@@ -57,9 +66,9 @@ void insertEnd(int x) {
    while (temp->next != NULL)
       temp = temp->next;  
    
-   temp->next = t;
-   t->data    = x;
-   t->next    = NULL;
+   temp->next=t;
+   t->data=x;
+   t->next=NULL;
 }
 
 void display()
@@ -74,12 +83,14 @@ void display()
    }
    
    printf("There are %d elements in linked list.\n", count);
-   
-   while (t->next != NULL) {
-      printf("%d\n", t->data);
-      t = t->next;
+   int i=0;
+   while (t->next != NULL) 
+   {
+   		i++;
+    	printf("%d\n", t->data);
+    	t=t->next;
    }
-   printf("%d\n", t->data);
+   printf("%d\n",t->data);
 }
 
 void deleteList(int position)
@@ -89,7 +100,7 @@ void deleteList(int position)
 
     if(start == NULL)
     {
-        printf("List is already empty.");
+        printf("List is already empty.\n\n\n");
     }
     else
     {
@@ -115,12 +126,12 @@ void deleteList(int position)
 
 
             free(toDelete);
-
-            printf("SUCCESSFULLY DELETED NODE FROM MIDDLE OF LIST\n");
+			count--;
+            printf("Element Deleted\n\n\n");
         }
         else
         {
-            printf("Invalid position unable to delete.");
+            printf("Invalid position unable to delete.\n\n\n");
         }
     }
 
